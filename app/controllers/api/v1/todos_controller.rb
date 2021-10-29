@@ -1,9 +1,13 @@
 class Api::V1::TodosController < ApplicationController
-  before_action :set_todo, only: [:update, :destroy]
+  before_action :set_todo, only: [:show, :update, :destroy]
 
   def index
     @todo = Todo.all.order("created_at DESC")
     render json: @todo
+  end
+
+  def show
+    render json: set_todo
   end
 
   def create
@@ -12,6 +16,7 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def update
+    byebug
     @todo.update(todo_params)
   end
 
@@ -21,7 +26,7 @@ class Api::V1::TodosController < ApplicationController
 
   private
     def set_todo
-
+      @todo = Todo.find(params[:id])
     end
 
     def todo_params
