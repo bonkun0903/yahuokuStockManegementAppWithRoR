@@ -16,7 +16,6 @@ class Api::V1::TodosController < ApplicationController
   end
 
   def update
-    byebug
     @todo.update(todo_params)
   end
 
