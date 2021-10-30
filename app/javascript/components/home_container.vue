@@ -1,10 +1,34 @@
 <template>
   <div class="container">
-    <h2>TODO List</h2>
-    <form v-on:submit.prevent>
-      <input type="text" v-model="body">
-      <button @click.prevent="createTodo">保存</button>
-    </form>
+    <v-form 
+      v-model="valid"
+      @submit.prevent="createTodo"
+    >
+      <v-container>
+        <v-row>
+          <v-col
+            cols="12"
+            md="4"
+          >
+            <v-text-field
+              v-model="body"
+              :rules="nameRules"
+              :counter="10"
+              label="Add any task"
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col>
+            <v-btn
+              class="mr-4"
+              type="submit"
+            >
+              submit
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-form>
     <ul>
       <li v-for="(todo, index) in todos" :key="todo.id">
         <input
@@ -25,7 +49,7 @@ import axios from "axios"
 export default {
   data: function () {
     return {
-　　　 //todoリスト
+ //todoリスト
       todos: [],
       //テキストボックスの値
       body: "",
