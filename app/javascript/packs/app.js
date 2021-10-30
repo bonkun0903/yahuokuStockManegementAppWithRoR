@@ -1,15 +1,15 @@
 import Vue from "vue";
-import Vuetify from "vuetify"; // 追加
-import "vuetify/dist/vuetify.min.css"; // 追加
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
 import App from "../app.vue";
 import HomeContainer from "../components/home_container"
 
-Vue.use(Vuetify); // 追加
-const vuetify = new Vuetify(); // 追加
+Vue.use(Vuetify);
+const vuetify = new Vuetify();
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = new Vue({
-    vuetify, // 追加
+    vuetify,
     render: h => h(HomeContainer)
   }).$mount();
   document.body.appendChild(app.$el);
