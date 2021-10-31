@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <v-form 
+    <!-- <v-form 
       v-model="valid"
-      @submit.prevent="createTodo"
+      @submit.prevent="createProduct"
     >
       <v-container>
         <v-row>
@@ -11,7 +11,7 @@
             md="4"
           >
             <v-text-field
-              v-model="body"
+              v-model="title"
               :rules="nameRules"
               :counter="10"
               label="Add any task"
@@ -28,16 +28,16 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-form>
+    </v-form> -->
     <ul>
-      <li v-for="(todo, index) in todos" :key="todo.id">
-        <input
+      <li v-for="(product, index) in products" :key="product.id">
+        <!-- <input
           type="checkbox"
-          v-on:change="doneChange(index, todo.id, todo.done)"
-          v-model="todo.done"
-        >
-        <span :class="{ done: todo.done }">{{ todo.body }}</span>
-        <button v-on:click="deleteTodo(index, todo.id)">削除</button>
+          v-on:change="doneChange(index, product.id, product.done)"
+          v-model="product.done"
+        > -->
+        <span>{{ product.title }}</span>
+        <button v-on:click="deleteProduct(index, product.id)">削除</button>
       </li>
     </ul>
   </div>
@@ -49,41 +49,41 @@ import axios from "axios"
 export default {
   data: function () {
     return {
- //todoリスト
-      todos: [],
+ //productリスト
+      products: [],
       //テキストボックスの値
-      body: "",
+      title: "",
     }
   },
   //一覧読み込み
   mounted () {
-    axios.get('/api/v1/todos').then((response) => {
-      this.todos = response.data
+    axios.get('/api/v1/products').then((response) => {
+      this.products = response.data
       }).catch(() => {
         alert("エラー");
       });
   },
   methods: {
-    //Todo作成
-    createTodo() {
-      axios.post("/api/v1/todos", { body: this.body }).then((response) => {
-        this.todos.unshift(response.data);
-        this.body = "";
+    //Product作成
+    createProduct() {
+      axios.post("/api/v1/products", { title: this.title }).then((response) => {
+        this.products.unshift(response.data);
+        this.title = "";
       }).catch(() => {
         alert("エラー");
       });
     },
     //checkボックスで発火する済んだかどうかのやつ
     doneChange(index, donechange_id, done_flg) {
-      axios.put(`/api/v1/todos/${donechange_id}`, { done: done_flg }).then((response) => {
+      axios.put(`/api/v1/products/${donechange_id}`, { done: done_flg }).then((response) => {
       }).catch(() => {
         alert("エラー");
       });
     },
-    //Todo削除
-    deleteTodo(index, delete_id) {
-      axios.delete(`/api/v1/todos/${delete_id}`).then((response) => {
-        this.todos.splice(index, 1);
+    //Product削除
+    deleteProduct(index, delete_id) {
+      axios.delete(`/api/v1/products/${delete_id}`).then((response) => {
+        this.products.splice(index, 1);
       }).catch(() => {
         alert("エラー");
       });
@@ -93,13 +93,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  ul {
-    list-style: none;
-    li {
-      span.done {
-        //チェックボックスで発火する取り消し線
-        text-decoration: line-through;
-      }
-    }
-  }
+  // ul {
+  //   list-style: none;
+  //   li {
+  //     span.done {
+  //       //チェックボックスで発火する取り消し線
+  //       text-decoration: line-through;
+  //     }
+  //   }
+  // }
 </style>
