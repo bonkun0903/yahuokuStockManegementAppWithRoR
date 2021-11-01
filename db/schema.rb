@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_31_061303) do
+ActiveRecord::Schema.define(version: 2021_11_01_002029) do
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "category", default: 0, null: false
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 2021_10_31_061303) do
     t.boolean "inventory_seal_exported", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "shelf_id", null: false
+    t.index ["shelf_id"], name: "index_products_on_shelf_id"
+  end
+
+  create_table "shelves", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "shelf_code", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "todos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -59,4 +67,5 @@ ActiveRecord::Schema.define(version: 2021_10_31_061303) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "shelves"
 end

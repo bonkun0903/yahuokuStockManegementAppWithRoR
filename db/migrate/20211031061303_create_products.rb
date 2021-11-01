@@ -21,7 +21,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.integer :automatic_relist, null: false, default: 3
       t.integer :automatic_price_cut, null: false, default: 0
       t.integer :delivery_method, null: false, default: 0
-      # t.references :shelf, foreign_key: true
       t.integer :inventory_status, null: false, default: 0
       t.boolean :zip_exported, null: false, default: false
       t.boolean :inventory_seal_exported, null: false, default: false

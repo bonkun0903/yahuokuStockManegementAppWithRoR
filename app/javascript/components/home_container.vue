@@ -37,6 +37,7 @@
           v-model="product.done"
         > -->
         <span>{{ product.title }}</span>
+        <span>{{ product.shelf_id }}</span>
         <button v-on:click="deleteProduct(index, product.id)">削除</button>
       </li>
     </ul>
