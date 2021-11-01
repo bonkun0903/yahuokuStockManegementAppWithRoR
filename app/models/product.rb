@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
+  belongs_to :shelf
   # enum 
   enum shipping_fee_defrayer: [:successful_bidder, :listing_person ]
   enum payment_timing: [:charge_advance_payment, :charge_deferred_payment]
@@ -21,16 +22,16 @@ class Product < ApplicationRecord
   validates :period, numericality: { only_integer: true, in: 2..7 }, presence: true
   validates :end_time, numericality: { only_integer: true, in: 0..23 }, presence: true
   validates :prefecture_id, numericality: { only_integer: true, in: 1..47 }, presence: true
-  validates :shipping_fee_defrayer, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.shipping_fee_defrayers.keys }
-  validates :payment_timing, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.payment_timings.keys }
-  validates :fee, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.fees.keys }
-  validates :product_status, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.product_statuses.keys }
+  validates :shipping_fee_defrayer, presence: true, inclusion: { in: Product.shipping_fee_defrayers.keys }
+  validates :payment_timing, presence: true, inclusion: { in: Product.payment_timings.keys }
+  validates :fee, presence: true, inclusion: { in: Product.fees.keys }
+  validates :product_status, presence: true, inclusion: { in: Product.product_statuses.keys }
   validates :returnable, inclusion: [true, false]
   # validates :image, presence: true
   validates :automatic_extension, inclusion: [true, false]
   validates :buyout_price, numericality: { only_integer: true }
   validates :automatic_relist, numericality: { only_integer: true, in: 0..3 }
   validates :automatic_price_cut, numericality: { only_integer: true }, inclusion: { in: AUTOMATIC_PRICE_CUT_VALUES }
-  validates :delivery_method, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.delivery_methods.keys }
-  validates :inventory_status, numericality: { only_integer: true }, inclusion: { in: Product.inventory_statuses.keys }
+  validates :delivery_method, presence: true, inclusion: { in: Product.delivery_methods.keys }
+  validates :inventory_status, inclusion: { in: Product.inventory_statuses.keys }
 end
