@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_01_002029) do
+ActiveRecord::Schema.define(version: 2021_11_01_050108) do
 
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "category", default: 0, null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_002029) do
     t.integer "count", default: 1, null: false
     t.integer "period", default: 5, null: false
     t.integer "end_time", default: 13, null: false
-    t.integer "from_prefecture", default: 33, null: false
+    t.integer "prefecture_id", default: 33, null: false
     t.integer "shipping_fee_defrayer", default: 0, null: false
     t.integer "payment_timing", default: 0, null: false
     t.integer "fee", default: 0, null: false

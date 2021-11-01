@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
   # enum 
   enum shipping_fee_defrayer: [:successful_bidder, :listing_person ]
   enum payment_timing: [:charge_advance_payment, :charge_deferred_payment]
@@ -18,7 +20,7 @@ class Product < ApplicationRecord
   validates :count, numericality: { only_integer: true, in: 1..99 }, presence: true
   validates :period, numericality: { only_integer: true, in: 2..7 }, presence: true
   validates :end_time, numericality: { only_integer: true, in: 0..23 }, presence: true
-  validates :from_prefecture, numericality: { only_integer: true, in: 1..47 }, presence: true
+  validates :prefecture_id, numericality: { only_integer: true, in: 1..47 }, presence: true
   validates :shipping_fee_defrayer, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.shipping_fee_defrayers.keys }
   validates :payment_timing, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.payment_timings.keys }
   validates :fee, numericality: { only_integer: true }, presence: true, inclusion: { in: Product.fees.keys }
