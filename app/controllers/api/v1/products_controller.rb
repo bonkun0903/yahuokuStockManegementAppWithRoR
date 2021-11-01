@@ -11,12 +11,20 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.create!(product_params)
-    render json: @product
+    begin
+      @product = Product.create!(product_params)
+      render json: @product
+    rescue ArgumentError
+      # TODO
+    end
   end
 
   def update
-    @product.update(product_params)
+    begin
+      @product.update(product_params)
+    rescue ArgumentError
+      # TODO
+    end
   end
 
   def destroy

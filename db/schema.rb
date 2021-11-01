@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_11_01_002029) do
     t.boolean "inventory_seal_exported", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "shelf_id", null: false
+    t.bigint "shelf_id"
     t.index ["shelf_id"], name: "index_products_on_shelf_id"
   end
 
