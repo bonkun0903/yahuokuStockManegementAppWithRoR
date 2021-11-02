@@ -1,15 +1,15 @@
 <template>
-  <v-app id="app"> <!-- 追加 -->
+  <v-app id="app">
     <v-btn
-    >Vuetifyのボタン</v-btn> <!-- 追加 -->
+    >Vuetifyのボタン</v-btn>
     <v-btn
       color="primary"
       elevation="2"
     >こんにちは！！</v-btn>
-    <div>  <!-- 更新 -->
+    <div>
       <p>{{ message }}</p>
     </div>
-  </v-app> <!-- 追加 -->
+  </v-app>
 </template>
 
 <script>

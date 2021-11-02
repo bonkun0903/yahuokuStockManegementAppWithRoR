@@ -2,7 +2,7 @@ class Api::V1::ProductsController < ApplicationController
   before_action :set_product, only: [:show, :update, :destroy]
 
   def index
-    @product = Product.all.order("created_at DESC")
+    @product = Product.all.order("id ASC")
     render json: @product
   end
 
@@ -21,9 +21,11 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     begin
-      @product.update(product_params)
+      puts "ここまで来ています"
+      byebug
+      @product.update!(product_params)
     rescue ArgumentError
-      # TODO
+      puts "引数エラー"
     end
   end
 
@@ -37,6 +39,32 @@ class Api::V1::ProductsController < ApplicationController
     end
 # TODO
     def product_params
-      params.require(:product).permit(:body, :done)
+      params.require(:product).permit(
+        :category,
+        :title,
+        :description,
+        :start_price,
+        :count,
+        :period,
+        :end_time,
+        :from_prefecture,
+        :shipping_fee_defrayer,
+        :payment_timing,
+        :fee,
+        :product_status,
+        :returnable,
+        :return_remark,
+        :image,
+        :automatic_extension,
+        :buyout_price,
+        :automatic_relist,
+        :automatic_price_cut,
+        :delivery_method,
+        :inventory_status,
+        :zip_exported,
+        :inventory_seal_exported,
+        :shelf_id,
+        :prefecture_id
+      )
     end
 end

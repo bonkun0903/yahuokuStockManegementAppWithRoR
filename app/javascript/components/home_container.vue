@@ -1,5 +1,13 @@
 <template>
   <div class="container">
+    <template>
+      <v-data-table
+        :headers="headers"
+        :items="products"
+        :items-per-page="5"
+        class="elevation-1"
+      ></v-data-table>
+    </template>
     <!-- <v-form 
       v-model="valid"
       @submit.prevent="createProduct"
@@ -50,6 +58,27 @@ import axios from "axios"
 export default {
   data: function () {
     return {
+      headers: [
+        {
+          text: '管理番号',
+          align: 'start',
+          sortable: false,
+          value: 'id',
+        },
+        { text: '商品タイトル', value: 'title' },
+        { text: '画像', value: 'image' },
+        { text: '開始価格', value: 'start_price' },
+        { text: '即決価格', value: 'buyout_price' },
+        { text: '個数', value: 'count' },
+        { text: '期間', value: 'period' },
+        { text: '終了時間', value: 'end_time' },
+        { text: '作成日', value: 'created_at' },
+        { text: '更新日', value: 'updated_at' },
+        { text: '棚番号', value: 'shelf_id' },
+        { text: '在庫ステータス', value: 'inventory_status' },
+        { text: 'ZIPファイル出力', value: 'zip_exported' },
+        { text: '在庫シール出力', value: 'inventory_seal_exported' }
+      ],
  //productリスト
       products: [],
       //テキストボックスの値
