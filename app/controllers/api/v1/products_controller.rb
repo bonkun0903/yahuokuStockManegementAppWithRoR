@@ -21,6 +21,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def update
+    byebug
     begin
       @product.update!(product_params)
       render json: @product

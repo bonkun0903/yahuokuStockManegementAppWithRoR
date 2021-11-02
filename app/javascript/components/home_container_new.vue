@@ -269,6 +269,11 @@
       },
 
       deleteItemConfirm () {
+        // API削除
+        axios.delete(`api/v1/products/${this.products[this.editedIndex].id}`).then(() => {
+        }).catch(() => {
+          alert("エラー");
+        });
         this.products.splice(this.editedIndex, 1)
         this.closeDelete()
       },
@@ -293,7 +298,7 @@
         if (this.editedIndex > -1) {
           Object.assign(this.products[this.editedIndex], this.editedItem)
           // API更新
-          axios.put(`/api/v1/products/1`, { 
+          axios.put(`/api/v1/products/${this.products[this.editedIndex].id}`, { 
             title: this.editedItem.title,
             start_price: this.editedItem.start_price,
             buyout_price: this.editedItem.buyout_price,
