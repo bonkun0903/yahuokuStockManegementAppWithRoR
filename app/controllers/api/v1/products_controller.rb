@@ -1,4 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_product, only: [:show, :update, :destroy]
 
   def index
@@ -21,9 +22,8 @@ class Api::V1::ProductsController < ApplicationController
 
   def update
     begin
-      puts "ここまで来ています"
-      byebug
       @product.update!(product_params)
+      render json: @product
     rescue ArgumentError
       puts "引数エラー"
     end

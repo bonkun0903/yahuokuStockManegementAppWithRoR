@@ -292,17 +292,14 @@
       save () {
         if (this.editedIndex > -1) {
           Object.assign(this.products[this.editedIndex], this.editedItem)
-          // ここでAPIを叩いて保存を行う
-          // 作成
-          // axios.post("/api/v1/products", { title: this.title }).then((response) => {
-          //   this.products.unshift(response.data);
-          //   this.title = "";
-          // }).catch(() => {
-          //   alert("エラー");
-          // });
-
-          // 更新
-          axios.put(`/api/v1/products/1`, { title: 'axiosによって編集', shelf_id: 1 }).then((response) => {
+          // API更新
+          axios.put(`/api/v1/products/1`, { 
+            title: this.editedItem.title,
+            start_price: this.editedItem.start_price,
+            buyout_price: this.editedItem.buyout_price,
+            period: this.editedItem.period,
+            inventory_status: this.editedItem.inventory_status
+           }).then(() => {
           }).catch(() => {
             alert("エラー");
           });
