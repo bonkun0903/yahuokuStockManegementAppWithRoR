@@ -1,24 +1,8 @@
+# yahuokuStockManegementAppWithRoR
+
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ヤフオク在庫管理アプリをRuby on Rails基幹で開発します。
 
-Things you may want to cover:
+# 要件定義
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
