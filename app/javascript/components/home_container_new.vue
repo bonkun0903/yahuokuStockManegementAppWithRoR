@@ -26,7 +26,297 @@
             label="Single select"
             class="pa-3"
           ></v-switch>
+
           <v-dialog
+            v-model="addDialog"
+            max-width="500px"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                dark
+                class="mb-2"
+                v-bind="attrs"
+                v-on="on"
+              >
+                Add Product
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">{{ formTitle }}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.title"
+                        label="商品タイトル"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.category"
+                        label="カテゴリ"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.description"
+                        label="説明"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.start_price"
+                        label="開始価格"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.count"
+                        label="個数"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.period"
+                        label="期間"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.end_time"
+                        label="終了時間"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.shipping_fee_defrayer"
+                        label="送料負担"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.payment_timing"
+                        label="支払いタイミング"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.fee"
+                        label="消費税設定"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.product_status"
+                        label="商品状態"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.returnable"
+                        label="返品の可否"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.return_remark"
+                        label="返品の可否備考"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-file-input
+                        v-model="createdItem.image"
+                        chips
+                        multiple
+                        truncate-length="15"
+                        label="画像"
+                      ></v-file-input>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.automatic_extension"
+                        label="自動延長"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.buyout_price"
+                        label="即決価格"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.automatic_relist"
+                        label="自動再出品"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.automatic_price_cut"
+                        label="自動値下げ"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.delivery_method"
+                        label="配送方法"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.inventory_status"
+                        label="在庫ステータス"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.zip_exported"
+                        label="ZIP出力ステータス"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.inventory_seal_exported"
+                        label="在庫シールステータス"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.shelf_id"
+                        label="棚番号"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                    >
+                      <v-text-field
+                        v-model="createdItem.prefecture_id"
+                        label="配送元都道府県"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="close"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  color="pink darken-1"
+                  text
+                  @click="add"
+                >
+                  Save
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+          <!-- <v-dialog
             v-model="dialog"
             max-width="500px"
           >
@@ -131,7 +421,7 @@
                 </v-btn>
               </v-card-actions>
             </v-card>
-          </v-dialog>
+          </v-dialog> -->
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -179,6 +469,7 @@
     data: () => ({
       singleSelect: false,
       selected: [],
+      addDialog: false,
       dialog: false,
       dialogDelete: false,
       headers: [
@@ -205,6 +496,32 @@
       ],
       products: [],
       editedIndex: -1,
+      createdItem: {
+        category: 0,
+        title: '商品名',
+        description: '<h1>Helloworld</h1>',
+        start_price: 10000,
+        count: 1,
+        period: 7,
+        end_time: 13,
+        shipping_fee_defrayer: 0,
+        payment_timing: 0,
+        fee: 0,
+        product_status: 3,
+        returnable: false,
+        return_remark: '返品は承っておりません',
+        image: {},
+        automatic_extension: true,
+        buyout_price: 0,
+        automatic_relist: 3,
+        automatic_price_cut: 0,
+        delivery_method: 0,
+        inventory_status: 0,
+        zip_exported: false,
+        inventory_seal_exported: false,
+        shelf_id: 1,
+        prefecture_id: 33
+      },
       editedItem: {
         title: '',
         start_price: 0,
@@ -280,6 +597,7 @@
 
       close () {
         this.dialog = false
+        this.addDialog = false
         this.$nextTick(() => {
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
@@ -292,6 +610,40 @@
           this.editedItem = Object.assign({}, this.defaultItem)
           this.editedIndex = -1
         })
+      },
+
+      add () {
+        axios.post("/api/v1/products", {
+          category: 0,
+          title: '商品名',
+          description: '<h1>Helloworld</h1>',
+          start_price: 10000,
+          count: 1,
+          period: 7,
+          end_time: 13,
+          shipping_fee_defrayer: 0,
+          payment_timing: 0,
+          fee: 0,
+          product_status: 3,
+          returnable: false,
+          return_remark: '返品は承っておりません',
+          image: this.createdItem.image,
+          automatic_extension: true,
+          buyout_price: 0,
+          automatic_relist: 3,
+          automatic_price_cut: 0,
+          delivery_method: 0,
+          inventory_status: 0,
+          zip_exported: false,
+          inventory_seal_exported: false,
+          shelf_id: 1,
+          prefecture_id: 33
+        }).then((response) => {
+          this.products.unshift(response.data);
+          this.title = "";
+        }).catch(() => {
+          alert("エラー");
+        });
       },
 
       save () {

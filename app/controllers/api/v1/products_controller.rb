@@ -21,7 +21,6 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def update
-    byebug
     begin
       @product.update!(product_params)
       render json: @product
@@ -55,7 +54,7 @@ class Api::V1::ProductsController < ApplicationController
         :product_status,
         :returnable,
         :return_remark,
-        :image,
+        # :image,
         :automatic_extension,
         :buyout_price,
         :automatic_relist,
