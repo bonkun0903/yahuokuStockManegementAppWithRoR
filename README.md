@@ -47,6 +47,8 @@
 2. よくある形状情報をタグ表示（手入力可能）
 
 ## 現場作業フロー
+[現場作業フロー](https://docs.google.com/spreadsheets/d/1CCfhtsdbCOP2Au_lwMvG9FRbsbBJtt4OBNNqlyF7p1g/edit#gid=172319438 "現場作業フローを確認")
+
 - 仕分け
 - 美化
 - 撮影
